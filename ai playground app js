@@ -1,0 +1,35 @@
+// App.jsx for AI Powered Code Playground
+
+import { Code, Play } from "lucide-react"; import { useState } from "react";
+
+function App() { const [code, setCode] = useState('// Write your code here'); const [output, setOutput] = useState('');
+
+const runCode = () => { try { // For demonstration only. In real apps, consider sandboxing. // eslint-disable-next-line no-eval const result = eval(code); setOutput(String(result)); } catch (err) { setOutput('Error: ' + err.message); } };
+
+return ( <div style={{ padding: '20px', fontFamily: 'Arial', maxWidth: '800px', margin: '0 auto' }}> <h1>AI Powered Code Playground</h1> <p>Experiment with JavaScript code safely.</p>
+
+<textarea
+    value={code}
+    onChange={(e) => setCode(e.target.value)}
+    rows={10}
+    style={{ width: '100%', fontFamily: 'monospace', fontSize: '14px', marginBottom: '10px' }}
+  />
+
+  <div style={{ marginBottom: '10px' }}>
+    <button onClick={runCode} style={{ marginRight: '10px', padding: '5px 10px', cursor: 'pointer' }}>
+      <Play size={16} /> Run
+    </button>
+    <button style={{ padding: '5px 10px', cursor: 'pointer' }}>
+      <Code size={16} /> Reset
+    </button>
+  </div>
+
+  <div style={{ background: '#f0f0f0', padding: '10px', minHeight: '50px' }}>
+    <strong>Output:</strong>
+    <pre>{output}</pre>
+  </div>
+</div>
+
+); }
+
+export default App;
